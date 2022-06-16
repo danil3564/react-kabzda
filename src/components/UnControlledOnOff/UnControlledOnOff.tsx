@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 type OnOffType = {
-    on: boolean
-    setOn: (onOffValue: boolean) => void
+    defaultOn?: boolean
 }
 
 export const UnControlledOnOff = (props: OnOffType) => {
+
+    const [on, setOn] = useState(props.defaultOn ? props.defaultOn : false)
 
     const onOffContainerStyle = {
         display: "grid",
@@ -30,20 +31,20 @@ export const UnControlledOnOff = (props: OnOffType) => {
     }
 
     const onStyle = {
-        background: props.on ? "green" : "transparent"
+        background: on ? "green" : "transparent"
     }
     const offStyle = {
-        background: props.on ? "transparent" : "red"
+        background: on ? "transparent" : "red"
     }
     const indicatorOnOffStyle = {
-        background: props.on ? "green" : "red",
+        background: on ? "green" : "red",
     }
 
     return (
 
         <div style={onOffContainerStyle}>
-            <div onClick={ () => props.setOn(true) } style={ {...onOffStyle, ...onStyle} }>On</div>
-            <div onClick={() => props.setOn(false)} style={ {...onOffStyle, ...offStyle} }>Off</div>
+            <div onClick={ () => setOn(true) } style={ {...onOffStyle, ...onStyle} }>On</div>
+            <div onClick={() => setOn(false)} style={ {...onOffStyle, ...offStyle} }>Off</div>
             <div style={{...indicatorStyle, ...indicatorOnOffStyle}}></div>
         </div>
 

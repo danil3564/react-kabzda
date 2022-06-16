@@ -2,19 +2,19 @@ import React, {useState} from "react";
 
 type UnControlledAccordionPropsType = {
     titleValue: string
-    accordionUnControlled: boolean
-    setAccordionUnControlled: (collapsed: boolean) => void
 }
 
 export function UnControlledAccordion(props: UnControlledAccordionPropsType ) {
+
+    const [accordionMode, setAccordionMode] = useState<boolean>(false)
 
     return (
         <div>
             <UnControlledAccordionTitle
                 title={props.titleValue}
-                callBack={ () => props.setAccordionUnControlled(!props.accordionUnControlled) }
-                collapsed={props.accordionUnControlled}/>
-            {!props.accordionUnControlled && <UnControlledAccordionBody/>}
+                callBack={ () => setAccordionMode(!accordionMode) }
+                collapsed={accordionMode}/>
+            {!accordionMode && <UnControlledAccordionBody/>}
         </div>
     )
 }

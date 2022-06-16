@@ -2,79 +2,29 @@ import React from "react";
 
 type RatingPropsType = {
     value: number
+    setRatingValue: (value: number) => void
 }
 
-export function Rating(props: RatingPropsType) {
-    if (props.value === 1) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-            </div>
-        )
-    } else if (props.value === 2) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-            </div>
-        )
-    } else if (props.value === 3) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-            </div>
-        )
-    } else if (props.value === 4) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={false}/>
-            </div>
-        )
-    } else if (props.value === 5) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-            </div>
-        )
-    } else {
-        return (
-            <div>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-            </div>
-        )
-    }
+export function Rating(props:RatingPropsType) {
+
+    return (
+        <div>
+            <Star selected={1 <= props.value} setRatingControlled={ () => props.setRatingValue(1) }/>
+            <Star selected={2 <= props.value} setRatingControlled={ () => props.setRatingValue(2) }/>
+            <Star selected={3 <= props.value} setRatingControlled={ () => props.setRatingValue(3) }/>
+            <Star selected={4 <= props.value} setRatingControlled={ () => props.setRatingValue(4) }/>
+            <Star selected={5 <= props.value} setRatingControlled={ () => props.setRatingValue(5) }/>
+        </div>
+    )
 }
 
 type StarPropsType = {
     selected: boolean
+    setRatingControlled: () => void
 }
 
 function Star(props: StarPropsType) {
-    if (props.selected) {
-        return <span><b>Star</b> </span>
-    }
-    return <span>Star </span>
+    return <span onClick={props.setRatingControlled}>
+        {props.selected ? <b>Star </b> : "Star "}
+    </span>
 }

@@ -1,6 +1,9 @@
 import React from "react";
 
-type AccordionPropsType = {
+export type AccordionPropsType = {
+    /**
+     * комментарий для пропса под ним, отображается в документации
+     */
     titleValue: string,
     accordionControlled: boolean
     changeCollapsed: () => void

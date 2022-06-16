@@ -2,30 +2,30 @@ import React, {useState} from "react";
 import {RatingValueType} from "../../App";
 
 type UnControlledRatingPropsType = {
-    ratingControlled: RatingValueType
-    setRatingControlled: (ratingValue: RatingValueType) => void
+    defaultRating: RatingValueType
 }
 
-export function UnControlledRating(props:UnControlledRatingPropsType) {
-
+export function UnControlledRating(props: UnControlledRatingPropsType) {
+    const [ratingValue, setRatingValue] = useState<RatingValueType>(props.defaultRating ? props.defaultRating : 0 )
     return (
         <div>
-            <Star selected={1 <= props.ratingControlled} setRatingControlled={ () => props.setRatingControlled(1) }/>
-            <Star selected={2 <= props.ratingControlled} setRatingControlled={ () => props.setRatingControlled(2) }/>
-            <Star selected={3 <= props.ratingControlled} setRatingControlled={ () => props.setRatingControlled(3) }/>
-            <Star selected={4 <= props.ratingControlled} setRatingControlled={ () => props.setRatingControlled(4) }/>
-            <Star selected={5 <= props.ratingControlled} setRatingControlled={ () => props.setRatingControlled(5) }/>
+            <Star selected={1 <= ratingValue} setRatingValue={ () => setRatingValue(1) }/>
+            <Star selected={2 <= ratingValue} setRatingValue={ () => setRatingValue(2) }/>
+            <Star selected={3 <= ratingValue} setRatingValue={ () => setRatingValue(3) }/>
+            <Star selected={4 <= ratingValue} setRatingValue={ () => setRatingValue(4) }/>
+            <Star selected={5 <= ratingValue} setRatingValue={ () => setRatingValue(5) }/>
         </div>
     )
+
 }
 
 type StarPropsType = {
     selected: boolean
-    setRatingControlled: () => void
+    setRatingValue: () => void
 }
 
 function Star(props: StarPropsType) {
-    return <span onClick={props.setRatingControlled}>
+    return <span onClick={props.setRatingValue}>
         {props.selected ? <b>Star </b> : "Star "}
     </span>
 }

@@ -5,16 +5,20 @@ import {UnControlledAccordion} from "./components/UnControlledAccordion/UnContro
 import {UnControlledRating} from "./components/UnControlledRating/UnControlledRating";
 import {Accordion} from "./components/Accordion/Accordion";
 import {UnControlledOnOff} from "./components/UnControlledOnOff/UnControlledOnOff";
+import {Rating} from "./components/Rating/Rating";
+import {OnMode, Template} from "./components/OnOff/OnOff.stories";
 
 export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5
 
 function App() {
 
-    const [ratingControlled, setRatingControlled] = useState<RatingValueType>(0)
     const [accordionControlled, setAccordionControlled] = useState<boolean>(false)
-    const [accordionUnControlled, setAccordionUnControlled] = useState<boolean>(false)
-    let [on, setOn] = useState<boolean>(false)
-    let [switchOn, setSwitchOn] = useState<boolean>(false)
+    const [ratingValue, setRatingValue] = useState<number>(0)
+    const [switchOn, setSwitchOn] = useState<boolean>(false)
+
+    const switchOnHandler = () => {
+        setSwitchOn(!switchOn)
+    }
 
     return (
         <div className={"App"}>
@@ -23,32 +27,15 @@ function App() {
                 accordionControlled={accordionControlled}
                 changeCollapsed={() => setAccordionControlled(!accordionControlled)}/>
             <UnControlledAccordion
-                titleValue={"Menu2"}
-                accordionUnControlled={accordionUnControlled}
-                setAccordionUnControlled={setAccordionUnControlled}/>
-            <UnControlledRating
-                ratingControlled={ratingControlled}
-                setRatingControlled={setRatingControlled}/>
+                titleValue={"Menu2"}/>
+            <Rating value={ratingValue} setRatingValue={setRatingValue}/>
+            <UnControlledRating defaultRating={0}/>
             <OnOff
                 switchOn={switchOn}
-                setSwitchOn={() => setSwitchOn(!switchOn)}/>
-            <UnControlledOnOff
-                on={on}
-                setOn={setOn}/>
-            <p>{on ? "true" : "false"}</p>
-
-            {/*<PageTitle title={"This is APP component"}/>*/}
-            {/*<Rating value={0}/>*/}
+                setSwitchOn={switchOnHandler}/>
+            <UnControlledOnOff />
         </div>
     );
-}
-
-type PageTitlePropsType = {
-    title: string
-}
-
-function PageTitle(props: PageTitlePropsType) {
-    return <h1>{props.title}</h1>
 }
 
 export default App;
