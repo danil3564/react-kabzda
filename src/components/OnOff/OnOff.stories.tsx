@@ -9,11 +9,8 @@ export default {
 }
 
 export const Template: Story<OnOffType> = (args) => {
-    console.log(args)
     return <OnOff {...args} />
 }
-
-
 
 const callback = action("on or off clicked")
 

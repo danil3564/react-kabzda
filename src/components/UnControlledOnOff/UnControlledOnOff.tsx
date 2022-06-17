@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 
-type OnOffType = {
+export type OnOffType = {
     defaultOn?: boolean
 }
 
 export const UnControlledOnOff = (props: OnOffType) => {
-
     const [on, setOn] = useState(props.defaultOn ? props.defaultOn : false)
 
     const onOffContainerStyle = {
@@ -43,8 +42,9 @@ export const UnControlledOnOff = (props: OnOffType) => {
     return (
 
         <div style={onOffContainerStyle}>
-            <div onClick={ () => setOn(true) } style={ {...onOffStyle, ...onStyle} }>On</div>
-            <div onClick={() => setOn(false)} style={ {...onOffStyle, ...offStyle} }>Off</div>
+
+            <div onClick={() => setOn(props.defaultOn ? props.defaultOn : true) } style={ {...onOffStyle, ...onStyle} }>On</div>
+            <div onClick={() => setOn(props.defaultOn ? props.defaultOn : false)} style={ {...onOffStyle, ...offStyle} }>Off</div>
             <div style={{...indicatorStyle, ...indicatorOnOffStyle}}></div>
         </div>
 

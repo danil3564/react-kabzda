@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 
-type UnControlledAccordionPropsType = {
+export type UnControlledAccordionPropsType = {
     titleValue: string
+    defaultMode?: boolean
 }
 
 export function UnControlledAccordion(props: UnControlledAccordionPropsType ) {
 
-    const [accordionMode, setAccordionMode] = useState<boolean>(false)
+    const [accordionMode, setAccordionMode] = useState<boolean>(props.defaultMode ? props.defaultMode : false)
 
     return (
         <div>

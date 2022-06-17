@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {RatingValueType} from "../../App";
 
-type UnControlledRatingPropsType = {
+export type UnControlledRatingPropsType = {
     defaultRating: RatingValueType
 }
 

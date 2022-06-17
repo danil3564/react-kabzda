@@ -1,10 +1,22 @@
-import React, {useState} from "react";
-import {UnControlledAccordion} from "./UnControlledAccordion";
-import {action} from "@storybook/addon-actions";
+import React from "react";
+import {UnControlledAccordion, UnControlledAccordionPropsType} from "./UnControlledAccordion";
+import {Story} from "@storybook/react";
 
 export default {
     title: 'UnControlledAccordion',
     component: UnControlledAccordion,
 }
 
-export const OnOffChanging = () => <UnControlledAccordion titleValue={"Users"} />
+const Template: Story<UnControlledAccordionPropsType> = (args) => <UnControlledAccordion {...args} />
+
+export const MenuUnControlledCollapsedMode = Template.bind({})
+MenuUnControlledCollapsedMode.args = {
+    titleValue: "Menu",
+    defaultMode: false
+}
+
+export const MenuUnControlledUnCollapsedMode = Template.bind({})
+MenuUnControlledUnCollapsedMode.args = {
+    titleValue: "Menu",
+    defaultMode: true
+}
