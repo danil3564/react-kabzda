@@ -1,4 +1,12 @@
 import React from "react";
+import {AccordionTitle} from "./AccordionTitle";
+import {AccordionBody} from "./AccordionBody";
+
+type itemType = {
+    id: string
+    title: string
+    value: any
+}
 
 export type AccordionPropsType = {
     /**
@@ -7,30 +15,17 @@ export type AccordionPropsType = {
     titleValue: string,
     accordionControlled: boolean
     changeCollapsed: () => void
+    items: itemType[]
+    onClick: (value: any) => void
 }
 
 export function Accordion(props: AccordionPropsType) {
 
     return <div>
-        <AccordionTitle title={props.titleValue} changeCollapsed={props.changeCollapsed}/>
-        {!props.accordionControlled ? <AccordionBody/> : ''}
+        <AccordionTitle title={props.titleValue} changeCollapsed={props.changeCollapsed} />
+        {!props.accordionControlled
+            ? <AccordionBody items={props.items} onClick={props.onClick}/>
+            : ''}
     </div>
 
-}
-
-type AccordionTitlePropsType = {
-    title: string
-    changeCollapsed: () => void
-}
-
-function AccordionTitle(props: AccordionTitlePropsType) {
-    return <h3 onClick={props.changeCollapsed}>{props.title}</h3>
-}
-
-function AccordionBody() {
-    return <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-    </ul>
 }

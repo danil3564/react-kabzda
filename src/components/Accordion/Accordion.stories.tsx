@@ -1,32 +1,51 @@
-import React, {useState} from "react";
+import React from "react";
 import {Accordion, AccordionPropsType} from "./Accordion";
 import {action} from "@storybook/addon-actions";
 import {Story} from "@storybook/react";
+import {v1} from "uuid";
 
 export default {
     title: 'Accordion',
     component: Accordion,
 }
 
-const callback = action("Accordion mode change event fired")
+const Template: Story<AccordionPropsType> = (args) => {
+    console.log({...args})
+    return <Accordion {...args} />
+}
 
-const Template: Story<AccordionPropsType> = (args) => <Accordion {...args} />
+const callback = action("Accordion mode change event fired")
+const callbackItem = action("Some item was clicked")
+const items = [
+    {id: v1(), title: "first", value: 1},
+    {id: v1(), title: "second", value: 2},
+    {id: v1(), title: "third", value: 3},
+]
 
 export const MenuCollapsedMode = Template.bind({})
 MenuCollapsedMode.args = {
     titleValue: "Menu",
     accordionControlled: true,
-    changeCollapsed: callback
+    changeCollapsed: callback,
+    items: items,
+    onClick: callbackItem
 }
 
 export const UsersUnCollapsedMode = Template.bind({})
 UsersUnCollapsedMode.args = {
     titleValue: "Users",
     accordionControlled: false,
-    changeCollapsed: callback
+    changeCollapsed: callback,
+    items: items,
+    onClick: callbackItem
 }
 
-export const OnOffChanging = () => {
-    const [value, setValue] = useState(true)
-    return <Accordion titleValue={"Users"} accordionControlled={value} changeCollapsed={() => setValue(!value)} />
+export const CollapsedChangingMode = Template.bind({})
+CollapsedChangingMode.args = {
+    titleValue: "Users",
+    accordionControlled: false,
+    changeCollapsed: callback,
+    items: items,
+    onClick: (id) => {alert(`User with id: ${id} `)}
 }
+
