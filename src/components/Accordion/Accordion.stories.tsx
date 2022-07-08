@@ -10,12 +10,12 @@ export default {
 }
 
 const Template: Story<AccordionPropsType> = (args) => {
-    console.log({...args})
     return <Accordion {...args} />
 }
 
 const callback = action("Accordion mode change event fired")
 const callbackItem = action("Some item was clicked")
+const callbackItemById = (id: number) => {alert(`User with id: ${id} `)}
 const items = [
     {id: v1(), title: "first", value: 1},
     {id: v1(), title: "second", value: 2},
@@ -46,6 +46,6 @@ CollapsedChangingMode.args = {
     accordionControlled: false,
     changeCollapsed: callback,
     items: items,
-    onClick: (id) => {alert(`User with id: ${id} `)}
+    onClick: callbackItemById
 }
 

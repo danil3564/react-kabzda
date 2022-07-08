@@ -13,3 +13,4 @@ InputStory.args = {
     placeholder: 'Placeholder',
     title: 'Title'
 }
+

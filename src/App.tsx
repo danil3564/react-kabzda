@@ -7,6 +7,7 @@ import {Accordion} from "./components/Accordion/Accordion";
 import {UnControlledOnOff} from "./components/UnControlledOnOff/UnControlledOnOff";
 import {Rating} from "./components/Rating/Rating";
 import {v1} from "uuid";
+import {SelectCustom} from "./components/SelectCustom/SelectCustom";
 
 export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5
 
@@ -20,6 +21,14 @@ function App() {
         {id: v1(), title: "first", value: 1},
         {id: v1(), title: "second", value: 2},
         {id: v1(), title: "third", value: 3},
+    ]
+
+    const selectItems = [
+        {id: v1(), value: "1"},
+        {id: v1(), value: "2"},
+        {id: v1(), value: "3"},
+        {id: v1(), value: "4"},
+        {id: v1(), value: "5"},
     ]
 
     const onClickItem = (value: any) => {
@@ -46,6 +55,9 @@ function App() {
                 switchOn={switchOn}
                 setSwitchOn={switchOnHandler}/>
             <UnControlledOnOff/>
+            <SelectCustom
+                selectedItem={4}
+                items={selectItems}/>
         </div>
     );
 }

@@ -1,0 +1,36 @@
+.select_custom {
+    border: 1px solid #dedede;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.select_custom .element {
+    padding: 8px 10px;
+}
+.select_custom .element {
+    border-bottom: 1px solid #dedede;
+}
+.select_custom .element.hover {
+    color: #fff;
+    background: #1E66E4;
+}
+.select_custom .all_elements .element:first-of-type {
+    border-top: 1px solid #dedede;
+}
+.select_custom .main_element,
+.select_custom .element:last-of-type {
+    border: 0;
+}
+.select_custom .main_element {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.select_custom .main_element span {
+    display: inline-block;
+    font-size: 14px;
+    color: #777;
+    transition: 0.15s;
+}
+.select_custom.active .main_element span {
+    transform: rotate(180deg);
+}
